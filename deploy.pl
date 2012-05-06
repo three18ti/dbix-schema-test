@@ -13,7 +13,7 @@ use Config::Any;
 # set config file and load it
 my $config_file = './config.yml' ;
 # retreives information from first entry in array.
-my $cfg = Config::Any->load_files({ files => [$file], use_ext => 1 })->[0]->{$file};
+my $cfg = Config::Any->load_files({ files => [$config_file], use_ext => 1 })->[0]->{$config_file};
 
 # load db_config 
 my $db_config = $cfg->{'Database'};
