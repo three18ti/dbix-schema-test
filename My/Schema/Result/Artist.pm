@@ -20,12 +20,6 @@ __PACKAGE__->add_columns(
                             is_nullable => 0,
                             is_auto_increment => 0,
                           },
-                        albums  =>
-                          { data_type => 'varchar',
-                            size      => 256,
-                            is_nullable => 0,
-                            is_auto_increment => 0,
-                          },
                         rank =>
                           { data_type => 'integer',
                             size      => 16,
@@ -37,6 +31,6 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('artistid');
 
 # in My::Schema::Result::Artist
-# __PACKAGE__->has_many('albums', 'My::Schema::Result::Album', 'artist');
+__PACKAGE__->has_many('albums', 'My::Schema::Result::Album', 'artistid');
 
 1;

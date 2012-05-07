@@ -1,6 +1,9 @@
 package My::Schema;
 use Moose;
-use common::sense;
+use v5.14.2;
+
+use strict;
+use warnings;
 
 use base qw/DBIx::Class::Schema/;
 

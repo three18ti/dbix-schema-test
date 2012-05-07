@@ -13,7 +13,7 @@ __PACKAGE__->add_columns(albumid =>
                             is_nullable => 0,
                             is_auto_increment => 1,
                           },
-                        artist =>
+                        artistid =>
                           { data_type => 'integer',
                             size      => 16,
                             is_nullable => 0,
@@ -36,6 +36,7 @@ __PACKAGE__->add_columns(albumid =>
 __PACKAGE__->set_primary_key('albumid');
 
 # in My::Schema::Result::Artist
-__PACKAGE__->has_many('albums', 'My::Schema::Result::Album', 'artist');
+#__PACKAGE__->has_many('albums', 'My::Schema::Result::Album', 'artist');
+__PACKAGE__->belongs_to( artist => 'My::Schema::Result::Artist', 'artistid' );
 
 1;
