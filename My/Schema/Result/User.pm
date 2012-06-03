@@ -30,22 +30,21 @@ __PACKAGE__->add_columns(
                             is_nullable => 0,
                             is_auto_increment => 0,
                           },
-
                         # Have the 'password' column use a SHA-1 hash and 20-byte salt
                         # with RFC 2307 encoding; Generate the 'check_password" method
-                        password =>
-                          { data_type => 'varchar', 
-                            size      => 256,
-                            is_nullable => 0,
-                            is_auto_increment => 0,
-                            passphrase       => 'rfc2307',
-                            passphrase_class => 'SaltedDigest',
-                            passphrase_args  => {
-                                algorithm   => 'SHA-1',
-                                salt_random => 20.
-                            },
-                            passphrase_check_method => 'check_password',
-                          },
+#                        password =>
+#                          { data_type => 'varchar', 
+#                            size      => 256,
+#                            is_nullable => 0,
+#                            is_auto_increment => 0,
+#                            passphrase       => 'rfc2307',
+#                            passphrase_class => 'SaltedDigest',
+#                            passphrase_args  => {
+#                                algorithm   => 'SHA-1',
+#                                salt_random => 20.
+#                            },
+#                            passphrase_check_method => 'check_password',
+#                          },
                         email_address =>
                           { data_type   => "varchar",
                             size        => 256,
@@ -94,7 +93,7 @@ sub has_role {
     return any(map { $_->role } $self->roles) eq $role;
 }
 
-__PACKAGE__->meta->make_immutable;
+#__PACKAGE__->meta->make_immutable;
 1;
 __END__
 # in My::Schema::Result::Artist

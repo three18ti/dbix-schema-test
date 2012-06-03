@@ -64,12 +64,21 @@ $schema->populate('Role', [
 
 say "[*] Creating Users";
 #$schema->create({passphrase => 'plain'});
+#$schema->populate('User', [
+#                    [ qw/ username password user_roles/, ],
+#                    [ 'test1', 'test1', [ 'Administrator', 'Contributor', 'User',], ],
+#                    [ 'test2', 'test2', qw/Administrator/,                  ],
+#                    [ 'test3', 'test3', qw/Contributor/,                    ],
+#                    [ 'test4', 'test4', qw/User/,                           ],
+#                    [ 'test5', 'test5', qw/Contributor User/,               ],
+#                ],
+#);
 $schema->populate('User', [
-                    [ qw/ username password user_roles/, ],
-                    [ 'test1', 'test1', [ 'Administrator', 'Contributor', 'User',], ],
-                    [ 'test2', 'test2', qw/Administrator/,                  ],
-                    [ 'test3', 'test3', qw/Contributor/,                    ],
-                    [ 'test4', 'test4', qw/User/,                           ],
-                    [ 'test5', 'test5', qw/Contributor User/,               ],
+                    [ qw/ username user_roles/, ],
+                    [ 'test1', [ 'Administrator', 'Contributor', 'User',], ],
+                    [ 'test2', qw/Administrator/,                  ],
+                    [ 'test3', qw/Contributor/,                    ],
+                    [ 'test4', qw/User/,                           ],
+                    [ 'test5', qw/Contributor User/,               ],
                 ],
 );
