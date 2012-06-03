@@ -14,7 +14,7 @@ __PACKAGE__->position_column('userid');
 __PACKAGE__->table('users');
 
 __PACKAGE__->add_columns(
-                        userid =>
+                        user_id =>
                           { accessor  => 'userid',
                             data_type => 'integer',
                             size      => 16,
