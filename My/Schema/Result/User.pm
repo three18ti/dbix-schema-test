@@ -30,11 +30,21 @@ __PACKAGE__->add_columns(
                             is_nullable => 0,
                             is_auto_increment => 0,
                           },
-                        user_password =>
+
+                        # Have the 'password' column use a SHA-1 hash and 20-byte salt
+                        # with RFC 2307 encoding; Generate the 'check_password" method
+                        password =>
                           { data_type => 'varchar', 
                             size      => 256,
                             is_nullable => 0,
                             is_auto_increment => 0,
+                            passphrase       => 'rfc2307',
+                            passphrase_class => 'SaltedDigest',
+                            passphrase_args  => {
+                                algorithm   => 'SHA-1',
+                                salt_random => 20.
+                            },
+                            passphrase_check_method => 'check_password',
                           },
                         email_address =>
                           { data_type   => "varchar",
@@ -69,19 +79,6 @@ __PACKAGE__->has_many(
 #   You must already have the has_many() defined to use a many_to_many().
 __PACKAGE__->many_to_many(roles => 'user_roles', 'role');
 
-# Have the 'password' column use a SHA-1 hash and 20-byte salt
-# with RFC 2307 encoding; Generate the 'check_password" method
-__PACKAGE__->add_columns(
-    'user_password' => {
-        passphrase       => 'rfc2307',
-        passphrase_class => 'SaltedDigest',
-        passphrase_args  => {
-            algorithm   => 'SHA-1',
-            salt_random => 20.
-        },
-        passphrase_check_method => 'check_password',
-    },
-);
 
 =head2 has_role
 
