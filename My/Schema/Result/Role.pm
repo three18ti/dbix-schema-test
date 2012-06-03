@@ -33,7 +33,7 @@ __PACKAGE__->add_columns(
 #                            is_nullable => 1,
 #                            is_auto_increment => 0,
 #                          }
-#                       );
+                       );
 
 __PACKAGE__->set_primary_key('role_id');
 
@@ -55,9 +55,9 @@ __PACKAGE__->has_many(
 
 __PACKAGE__->meta->make_immutable;
 1;
-
+__END__
 
 # schema 
-__PACKAGE__->has_many(map_user_role => 'My::Schema::Result::UserRoles', 'roleid');
+#__PACKAGE__->has_many(map_user_role => 'My::Schema::Result::UserRoles', 'roleid');
 
 1;

@@ -8,7 +8,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components(/ Ordered InflateColumn::DateTime TimeStamp PassphraseColumn /);
+__PACKAGE__->load_components(qw/ Ordered InflateColumn::DateTime TimeStamp PassphraseColumn /);
 
 =head1 NAME
 
@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
                     );
 
 
-__PACKAGE__->set_primary_key("userid", "roleid");
+__PACKAGE__->set_primary_key("user_id", "role_id");
 #
 # Set relationships:
 
@@ -67,7 +67,7 @@ Related object: L<MyApp::Schema::Result::User>
 =cut
 
 __PACKAGE__->belongs_to(
-    user => MyApp::Schema::Result::User',
+    user => 'MyApp::Schema::Result::User',
     { id => "user_id" },
     { 
         is_deferrable => 1, 
@@ -80,6 +80,7 @@ __PACKAGE__->belongs_to(
 
 
 1;
+__END__
 # belongs_to():
 #   args:
 #     1) Name of relationship, DBIC will create accessor with this name

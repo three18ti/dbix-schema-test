@@ -51,7 +51,7 @@ __PACKAGE__->add_columns(
                           },
                        );
 
-__PACKAGE__->set_primary_key('userid');
+__PACKAGE__->set_primary_key('user_id');
 
 __PACKAGE__->has_many(
     user_roles  => 'My::Schema::Result::UserRole',
@@ -97,7 +97,7 @@ sub has_role {
 
 __PACKAGE__->meta->make_immutable;
 1;
-
+__END__
 # in My::Schema::Result::Artist
 
 # has_many():
