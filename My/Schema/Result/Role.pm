@@ -27,12 +27,12 @@ __PACKAGE__->add_columns(
                             is_nullable => 0,
                             is_auto_increment => 0,
                           },
-#                        rank =>
-#                          { data_type => 'integer',
-#                            size      => 16,
-#                            is_nullable => 1,
-#                            is_auto_increment => 0,
-#                          }
+                        rank =>
+                          { data_type => 'integer',
+                            size      => 16,
+                            is_nullable => 1,
+                            is_auto_increment => 0,
+                          }
                        );
 
 __PACKAGE__->set_primary_key('role_id');
