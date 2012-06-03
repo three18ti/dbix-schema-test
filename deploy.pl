@@ -32,6 +32,8 @@ my $schema = My::Schema->connect($dsn, $user_name, $password);
 $schema->deploy({ add_drop_table => 1});
 
 # add new row
+
+say "[*] Creating artist and insertng albums";
 my $new_album = $schema->resultset('Artist')->create(
     {
         artist => 'Pink Floyd',
@@ -42,22 +44,31 @@ my $new_album = $schema->resultset('Artist')->create(
         ],
     },
 );
+$new_album->update;
 
-# Attempt 1, not very useful, but it works
-#my $album = $schema->resultset('Album')->find(1);
-# also, don't understand why I have to call $album->artist->artist
-#say "Printing Artist from Album: " . $album->artist->artist . "\n";
-
-# Attempt 2, execute failed: ERROR:  column "artist" does not exist
-#my $rs = $schema->resultset('Album')->search( {artist => 'Pink Floyd'});
-#my $album = $rs->first;
-
-# Attempt 3, Can't locate object method "title" via package "My::Schema::Result::Artist" at deploy.pl line 59.
-# This makes sense because My::Schema::Result::Artist doesn't have a column named title, but album does
-#my $rs = $schema->resultset('Artist')->search( {artist => 'Pink Floyd'} );
-#my $album = $rs->first;
-#say "Printing Album title from Artist table: " . $album->title ;
-
+say "[*] Searching Database for Artist";
 my $rs = $schema->resultset('Artist');
 my $res = $rs->search ({ artist => "Pink Floyd" })->single;
+
+say "[*] Printing titles of Albums";
 say $_->title foreach $res->albums->all;
+
+say "[*] Creating Roles";
+$schema->populate('Roles', [
+                    [ qw/role rank/,        ],
+                    [ 'Administrator', '-1',],
+                    [ 'Contributor', '2',   ],
+                    [ 'User', '3',          ],
+                ]
+);
+
+#say "[*] Creating Users";
+#$schema->populate('Users', [
+#                    [ qw/ username password roles/, ],
+#                    [ 'test1', 'test1', [ 'Administrator', 'Contributor', 'User',], ],
+#                    [ 'test2', 'test2', qw/Administrator/,                  ],
+#                    [ 'test3', 'test3', qw/Contributor/,                    ],
+#                    [ 'test4', 'test4', qw/User/,                           ],
+#                    [ 'test5', 'test5', qw/Contributor User/,               ],
+#                ],
+#);
