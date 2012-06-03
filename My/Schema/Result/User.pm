@@ -1,4 +1,4 @@
-package My::Schema::Result::Users;
+package My::Schema::Result::User;
 
 use strict;
 use warnings;
@@ -6,10 +6,12 @@ use warnings;
 use Moose;
 use MooseX::NonMoose;
 use namespace::autoclean;
+#use base qw/DBIx::Class::Core/;
+
 extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw/ InflateColumn::DateTime Ordered TimeStamp PassphraseColumn /);
-__PACKAGE__->position_column('userid');
+__PACKAGE__->position_column('user_id');
 
 __PACKAGE__->table('users');
 
@@ -28,7 +30,7 @@ __PACKAGE__->add_columns(
                             is_nullable => 0,
                             is_auto_increment => 0,
                           },
-                        password =>
+                        user_password =>
                           { data_type => 'varchar', 
                             size      => 256,
                             is_nullable => 0,
@@ -70,7 +72,7 @@ __PACKAGE__->many_to_many(roles => 'user_roles', 'role');
 # Have the 'password' column use a SHA-1 hash and 20-byte salt
 # with RFC 2307 encoding; Generate the 'check_password" method
 __PACKAGE__->add_columns(
-    'password' => {
+    'user_password' => {
         passphrase       => 'rfc2307',
         passphrase_class => 'SaltedDigest',
         passphrase_args  => {

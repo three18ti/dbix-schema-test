@@ -54,13 +54,13 @@ say "[*] Printing titles of Albums";
 say $_->title foreach $res->albums->all;
 
 say "[*] Creating Roles";
-$schema->populate('Roles', [
-                    [ qw/role rank/,        ],
-                    [ 'Administrator', '-1',],
-                    [ 'Contributor', '2',   ],
-                    [ 'User', '3',          ],
-                ]
-);
+#$schema->populate('Roles', [
+#                    [ qw/role rank/,        ],
+#                    [ 'Administrator', '-1',],
+#                    [ 'Contributor', '2',   ],
+#                    [ 'User', '3',          ],
+#                ]
+#);
 
 #say "[*] Creating Users";
 #$schema->populate('Users', [
