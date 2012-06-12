@@ -2,7 +2,7 @@ package My::Schema::Result::Role;
 use Moose;
 use MooseX::NonMoose;
 use namespace::autoclean;
-extends 'DBIx::Class::Core';
+extends 'My::Schema::Result';
 
 __PACKAGE__->table('role');
 

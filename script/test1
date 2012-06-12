@@ -32,5 +32,23 @@ for my $user ($schema->resultset('User')->all) {
     $user->check_password('test123') or die 'Password check failed.';
 }
 
+my $user1 = $schema->resultset('User')->single({ id => 1 });
+
+$user1->user_roles->delete();
+
+say "User1 roles: ", join(' ', map { $_->name } $user1->roles->all);
+
+$user1->add_role('User');
+
+say "User1 roles: ", join(' ', map { $_->name } $user1->roles->all);
+
+$user1->add_role('Admin');
+
+say "User1 roles: ", join(' ', map { $_->name } $user1->roles->all);
+
+$user1->remove_role('User');
+
+say "User1 roles: ", join(' ', map { $_->name } $user1->roles->all);
+
 exit 0;
 
