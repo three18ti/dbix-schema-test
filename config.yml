@@ -1,7 +1,0 @@
-Database:
-    db_name:    'dbix'
-    db_driver:  'Pg'
-    db_host:    'localhost'
-    user_name:  'dbix'
-    password:   'dbix'
-    
