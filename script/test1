@@ -8,11 +8,11 @@ my $schema = My->schema;
 $schema->resultset('Role')->delete();
 
 $schema->resultset('Role')->populate([
-    [ qw( name ) ],
+    [ qw( id name ) ],
     
-    [ 'User'  ],
-    [ 'Admin' ],
-    [ 'Guest' ],
+    [1, 'Admin' ],
+    [2, 'User'  ],
+    [3, 'Guest' ],
 ]);
 
 $schema->resultset('User')->delete();
