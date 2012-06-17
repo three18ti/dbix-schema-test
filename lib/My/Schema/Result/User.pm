@@ -9,14 +9,42 @@ __PACKAGE__->table('user');
 
 __PACKAGE__->load_components( qw( EncodedColumn ) );
 
-__PACKAGE__->add_columns( qw( name username email ) );
+#__PACKAGE__->add_columns( qw( name username email ) );
 
 __PACKAGE__->add_columns(
-    id => { is_auto_increment => 1 },
+    id => { 
+            data_type => 'integer',
+            size      => 16,
+            is_nullable => 0,
+            is_auto_increment => 1 
+    },
+    username => { 
+            data_type => 'varchar',
+            size      => 256,
+            is_nullable => 0,
+            is_auto_increment => 0,
+    },
+    name    => {
+            data_type => 'varchar',
+            size      => 256,
+            is_nullable => 0,
+            is_auto_increment => 0,
+    },
+    email   => {
+            data_type => 'varchar',
+            size      => 256,
+            is_nullable => 0,
+            is_auto_increment => 0,
+    },
+
 );
 
 __PACKAGE__->add_columns(   
     password => {
+        data_type           => 'varchar', 
+        size                => 256,
+        is_nullable         => 0,
+        is_auto_increment   => 0,
         encode_column       => 1,
         encode_class        => 'Crypt::Eksblowfish::Bcrypt',
         encode_args         => { key_nul => 1, cost => 8 },

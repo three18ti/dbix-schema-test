@@ -6,10 +6,19 @@ extends 'My::Schema::Result';
 
 __PACKAGE__->table('role');
 
-__PACKAGE__->add_columns('name');
-
 __PACKAGE__->add_columns(
-    id => { is_auto_increment => 1 },
+    id => { 
+        data_type => 'integer',
+        size      => 16,
+        is_nullable => 0,
+        is_auto_increment => 1 
+    },
+    name => {
+        data_type => 'varchar',
+        size      => 256,
+        is_nullable => 0,
+        is_auto_increment => 0,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');

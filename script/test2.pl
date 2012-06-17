@@ -6,7 +6,7 @@ use feature qw(say);
 my $schema = My->schema;
 
 $schema->deploy({ add_drop_table => 1});
-
+__END__
 $schema->resultset('Role')->delete();
 
 $schema->resultset('Role')->populate([

@@ -10,6 +10,8 @@ use My::Schema;
 
 use Config::Any;
 
+use lib './lib';
+
 # set config file and load it
 my $config_file = './config.yml' ;
 # retreives information from first entry in array.
