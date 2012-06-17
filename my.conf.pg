@@ -1,0 +1,5 @@
+[My::Schema]
+dsn      = dbi:Pg:host=localhost;database=dbix
+user     = dbix
+password = dbix
+

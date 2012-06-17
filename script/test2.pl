@@ -6,8 +6,8 @@ use feature qw(say);
 my $schema = My->schema;
 
 $schema->deploy({ add_drop_table => 1});
-__END__
-$schema->resultset('Role')->delete();
+
+#$schema->resultset('Role')->delete();
 
 $schema->resultset('Role')->populate([
     [ qw( id name ) ],
@@ -17,7 +17,16 @@ $schema->resultset('Role')->populate([
     [3, 'Guest' ],
 ]);
 
-$schema->resultset('User')->delete();
+$schema->resultset('User')->create({
+        name => 'Test User 1',
+        username => 'test1',
+        email   => 'test1@example.org',
+        password    => 'test123',
+    }
+);
+__END__
+
+#$schema->resultset('User')->delete();
 
 $schema->resultset('User')->populate([
     [ qw( id name username email password ) ],
@@ -27,6 +36,7 @@ $schema->resultset('User')->populate([
     [3, 'Test User 3', 'test3', 'test3@example.org', '' ],
 ]);
 
+__END__
 # Passwords will be encrypted automatically
 for my $user ($schema->resultset('User')->all) {
     $user->update({ password => 'test123' });
