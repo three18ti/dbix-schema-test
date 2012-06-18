@@ -24,25 +24,24 @@ $schema->resultset('User')->create({
         password    => 'test123',
     }
 );
-__END__
 
 #$schema->resultset('User')->delete();
 
-$schema->resultset('User')->populate([
-    [ qw( id name username email password ) ],
-    
-    [1, 'Test User 1', 'test1', 'test1@example.org', '' ],
-    [2, 'Test User 2', 'test2', 'test2@example.org', '' ],
-    [3, 'Test User 3', 'test3', 'test3@example.org', '' ],
-]);
+#$schema->resultset('User')->populate([
+#    [ qw( id name username email password ) ],
+#    
+#    [1, 'Test User 1', 'test1', 'test1@example.org', '' ],
+#    [2, 'Test User 2', 'test2', 'test2@example.org', '' ],
+#    [3, 'Test User 3', 'test3', 'test3@example.org', '' ],
+#]);
 
-__END__
+#
 # Passwords will be encrypted automatically
-for my $user ($schema->resultset('User')->all) {
-    $user->update({ password => 'test123' });
-    
-    $user->check_password('test123') or die 'Password check failed.';
-}
+#for my $user ($schema->resultset('User')->all) {
+#    $user->update({ password => 'test123' });
+#    
+#    $user->check_password('test123') or die 'Password check failed.';
+#}
 
 my $user1 = $schema->resultset('User')->single({ id => 1 });
 
