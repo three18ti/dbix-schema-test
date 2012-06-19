@@ -5,25 +5,25 @@ use feature qw(say);
 
 my $schema = My->schema;
 
-$schema->deploy({ add_drop_table => 1});
+#$schema->deploy({ add_drop_table => 1});
 
 #$schema->resultset('Role')->delete();
 
-$schema->resultset('Role')->populate([
-    [ qw( id name ) ],
-    
-    [1, 'Admin' ],
-    [2, 'User'  ],
-    [3, 'Guest' ],
-]);
+#$schema->resultset('Role')->populate([
+#    [ qw( id name ) ],
+#    
+#    [1, 'Admin' ],
+#    [2, 'User'  ],
+#    [3, 'Guest' ],
+#]);
 
-$schema->resultset('User')->create({
-        name => 'Test User 1',
-        username => 'test1',
-        email   => 'test1@example.org',
-        password    => 'test123',
-    }
-);
+#$schema->resultset('User')->create({
+#        name => 'Test User 1',
+#        username => 'test1',
+#        email   => 'test1@example.org',
+#        password    => 'test123',
+#    }
+#);
 
 #$schema->resultset('User')->delete();
 
