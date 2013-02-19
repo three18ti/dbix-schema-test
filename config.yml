@@ -1,0 +1,5 @@
+Database:
+    db_name: foo
+    db_driver: mysql
+    user_name: foo
+    password: 21pencilZZ

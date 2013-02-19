@@ -9,8 +9,6 @@ __PACKAGE__->table('user');
 
 __PACKAGE__->load_components( qw( EncodedColumn ) );
 
-#__PACKAGE__->add_columns( qw( name username email ) );
-
 __PACKAGE__->add_columns(
     id => { 
             data_type => 'integer',

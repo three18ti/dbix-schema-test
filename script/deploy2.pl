@@ -35,32 +35,12 @@ $schema->deploy({ add_drop_table => 1});
 
 # add new row
 
-say "[*] Creating artist and insertng albums";
-my $new_album = $schema->resultset('Artist')->create(
-    {
-        artist => 'Pink Floyd',
-        albums => [
-            { title => 'Wish You Were Here', rank => '2',   },
-            { title => 'The Wall', rank => '3',             },
-            { title => 'Dark Side of the Moon', rank => '1',},
-        ],
-    },
-);
-$new_album->update;
-
-say "[*] Searching Database for Artist";
-my $rs = $schema->resultset('Artist');
-my $res = $rs->search ({ artist => "Pink Floyd" })->single;
-
-say "[*] Printing titles of Albums";
-say $_->title foreach $res->albums->all;
-
 say "[*] Creating Roles";
 $schema->populate('Role', [
-                    [ qw/role rank/,        ],
-                    [ 'Administrator', '-1',],
-                    [ 'Contributor', '2',   ],
-                    [ 'User', '3',          ],
+                    [ qw/name/,        ],
+                    [ 'Administrator',],
+                    [ 'Contributor',  ],
+                    [ 'User',      ],
                 ]
 );
 
@@ -76,17 +56,9 @@ say "[*] Creating Users";
 #                    [ 'test5', 'test5', qw/Contributor User/,               ],
 #                ],
 #);
-#$schema->populate('User', [
-#                    [ qw/ username roles/, ],
-#                    [ 'test1', [ 'Administrator', 'Contributor', 'User',], ],
-#                    [ 'test2', [ 'Administrator', ],                  ],
-#                    [ 'test3', [ 'Contributor', ],                    ],
-#                    [ 'test4', [ 'User',],                            ],
-#                    [ 'test5', [ 'Contributor', 'User',],             ],
-#                ],
-#);
-$schema->populate('User', [
-                    [ qw/ username roles/, ],
-                    [ 'test2', 'Administrator',                  ],
-                ],
-);
+
+$schema->resultset("User")->populate([
+    { username => 'test1', password => 'foobar', 
+        user_roles => { {role => 'Administrator'}, {role => 'Contributor'}, },
+    },
+]);
